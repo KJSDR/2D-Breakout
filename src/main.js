@@ -8,7 +8,7 @@ import Ball from './ball.js';
 import Paddle from './paddle.js';
 import Score from './score.js';
 import Lives from './lives.js';
-import Label from './label.js'; // Added missing import
+import Label from './label.js';
 import {
   canvas, ctx, brickHeight, brickWidth, brickRowCount, brickColumnCount,
   brickPadding, brickOffsetTop, brickOffsetLeft, paddleWidth,
@@ -19,9 +19,9 @@ const ball = new Ball(canvas.width / 2, canvas.height - 30, ballRadius);
 const paddle = new Paddle((canvas.width - paddleWidth) / 2, canvas.height - paddleHeight, paddleWidth, paddleHeight);
 const score = new Score(8, 20);
 const lives = new Lives(canvas.width - 65, 20);
-const label = new Label(200, 150, 'Vive La France');
+const label = new Label(200, 150, 'Something');
 
-const bricks = []; // Moved this from constants.js to here
+const bricks = [];
 
 for (let c = 0; c < brickColumnCount; c += 1) {
   bricks[c] = [];

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/extensions
 import Ball from './ball.js';
 // eslint-disable-next-line import/extensions
-import Paddle from './paddle.js';
+import Paddle from '../paddle.js';
 // eslint-disable-next-line import/extensions
 import Brick from './brick.js';
 // eslint-disable-next-line import/extensions
