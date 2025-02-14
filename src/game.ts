@@ -1,21 +1,26 @@
 // eslint-disable-next-line import/extensions
-import Ball from './ball.js';
+import Ball from './ball';
 // eslint-disable-next-line import/extensions
-import Paddle from '../paddle.js';
+import Paddle from './paddle';
 // eslint-disable-next-line import/extensions
-import Brick from './brick.js';
+import Brick from './brick';
 // eslint-disable-next-line import/extensions
-import Score from './score.js';
+import Score from './score';
 // eslint-disable-next-line import/extensions
-import Lives from './lives.js';
+import Lives from './lives';
 // eslint-disable-next-line import/extensions
 import {
-  // eslint-disable-next-line import/extensions, max-len
-  canvas, ctx, paddleWidth, brickRowCount, brickColumnCount, brickWidth, brickHeight, brickPadding, brickOffsetLeft, brickOffsetTop,
-// eslint-disable-next-line import/extensions
-} from './constants.js';
+  canvas, ctx, paddleWidth, brickRowCount, brickColumnCount, brickWidth, brickHeight, brickPadding, brickOffsetLeft, brickOffsetTop
+} from './constants';
 
 class Game {
+  private ball: Ball;
+  private paddle: Paddle;
+  private score: Score;
+  private lives: Lives;
+  private bricks: Brick[][];
+  private gameRunning: boolean;
+
   constructor() {
     this.ball = new Ball(canvas.width / 2, canvas.height - 30);
     this.paddle = new Paddle((canvas.width - paddleWidth) / 2, canvas.height - 10, paddleWidth, 10);
@@ -27,11 +32,9 @@ class Game {
     this.createBricks();
   }
 
-  createBricks() {
-    // eslint-disable-next-line no-plusplus
+  private createBricks(): void {
     for (let c = 0; c < brickColumnCount; c++) {
       this.bricks[c] = [];
-      // eslint-disable-next-line no-plusplus
       for (let r = 0; r < brickRowCount; r++) {
         const brickX = r * (brickWidth + brickPadding) + brickOffsetLeft;
         const brickY = c * (brickHeight + brickPadding) + brickOffsetTop;
@@ -40,10 +43,8 @@ class Game {
     }
   }
 
-  drawBricks() {
-    // eslint-disable-next-line no-plusplus
+  private drawBricks(): void {
     for (let c = 0; c < brickColumnCount; c++) {
-      // eslint-disable-next-line no-plusplus
       for (let r = 0; r < brickRowCount; r++) {
         const brick = this.bricks[c][r];
         if (brick.status === 1) {
@@ -53,7 +54,7 @@ class Game {
     }
   }
 
-  draw() {
+  private draw(): void {
     if (!this.gameRunning) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -67,11 +68,10 @@ class Game {
     this.score.draw(ctx);
     this.lives.draw(ctx);
 
-    // eslint-disable-next-line no-undef
     requestAnimationFrame(() => this.draw());
   }
 
-  start() {
+  public start(): void {
     if (!this.gameRunning) {
       this.gameRunning = true;
       this.draw();

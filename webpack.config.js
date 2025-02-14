@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 module.exports = {
   entry: './src/main.ts',
   module: {
@@ -14,7 +15,6 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    // eslint-disable-next-line no-undef
     path: path.resolve(__dirname, 'dist'),
   },
 };

@@ -2,18 +2,18 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions, no-undef, no-unused-vars */
-import Sprite from './sprite.js';
-import Brick from './brick.js';
-import Ball from './ball.js';
-import Paddle from './paddle.js';
-import Score from './score.js';
-import Lives from './lives.js';
-import Label from './label.js';
+import Sprite from './sprite';
+import Brick from './brick';
+import Ball from './ball';
+import Paddle from './paddle';
+import Score from './score';
+import Lives from './lives';
+import Label from './label';
 import {
   canvas, ctx, brickHeight, brickWidth, brickRowCount, brickColumnCount,
   brickPadding, brickOffsetTop, brickOffsetLeft, paddleWidth,
   paddleHeight, ballRadius,
-} from './constants.js';
+} from './constants';
 
 const ball = new Ball(canvas.width / 2, canvas.height - 30, ballRadius);
 const paddle = new Paddle((canvas.width - paddleWidth) / 2, canvas.height - paddleHeight, paddleWidth, paddleHeight);
@@ -21,7 +21,7 @@ const score = new Score(8, 20);
 const lives = new Lives(canvas.width - 65, 20);
 const label = new Label(200, 150, 'Something');
 
-const bricks = [];
+const bricks: Brick[][] = [];
 
 for (let c = 0; c < brickColumnCount; c += 1) {
   bricks[c] = [];
@@ -32,7 +32,7 @@ for (let c = 0; c < brickColumnCount; c += 1) {
   }
 }
 
-function collisionDetection() {
+function collisionDetection(): void {
   for (let c = 0; c < brickColumnCount; c += 1) {
     for (let r = 0; r < brickRowCount; r += 1) {
       const b = bricks[c][r];
@@ -51,7 +51,7 @@ function collisionDetection() {
   }
 }
 
-function drawBricks() {
+function drawBricks(): void {
   for (let c = 0; c < brickColumnCount; c += 1) {
     for (let r = 0; r < brickRowCount; r += 1) {
       const brick = bricks[c][r];
@@ -62,7 +62,7 @@ function drawBricks() {
   }
 }
 
-function draw() {
+function draw(): void {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ball.move();
   paddle.move();

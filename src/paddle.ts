@@ -1,10 +1,14 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/extensions */
-import Sprite from './sprite.js';
-import { canvas } from './constants.js';
+import Sprite from './sprite';
+import { canvas } from './constants';
 
 class Paddle extends Sprite {
-  constructor(x, y, width, height, color = '#0095DD') {
+  private dx: number;
+  private rightPressed: boolean;
+  private leftPressed: boolean;
+
+  constructor(x: number, y: number, width: number, height: number, color: string = '#0095DD') {
     super(x, y, width, height, color);
     this.dx = 7;
     this.rightPressed = false;
@@ -15,7 +19,7 @@ class Paddle extends Sprite {
     document.addEventListener('mousemove', this.mouseMoveHandler.bind(this), false);
   }
 
-  keyDownHandler(e) {
+  private keyDownHandler(e: KeyboardEvent): void {
     if (e.code === 'ArrowRight') {
       this.rightPressed = true;
     } else if (e.code === 'ArrowLeft') {
@@ -23,7 +27,7 @@ class Paddle extends Sprite {
     }
   }
 
-  keyUpHandler(e) {
+  private keyUpHandler(e: KeyboardEvent): void {
     if (e.code === 'ArrowRight') {
       this.rightPressed = false;
     } else if (e.code === 'ArrowLeft') {
@@ -31,14 +35,14 @@ class Paddle extends Sprite {
     }
   }
 
-  mouseMoveHandler(e) {
+  private mouseMoveHandler(e: MouseEvent): void {
     const relativeX = e.clientX - canvas.offsetLeft;
     if (relativeX > 0 && relativeX < canvas.width) {
       this.x = relativeX - this.width / 2;
     }
   }
 
-  move() {
+  public move(): void {
     if (this.rightPressed && this.x < canvas.width - this.width) {
       this.x += this.dx;
     } else if (this.leftPressed && this.x > 0) {
@@ -46,9 +50,9 @@ class Paddle extends Sprite {
     }
   }
 
-  render(ctx) {
+  public render(ctx: CanvasRenderingContext2D): void {
     ctx.beginPath();
-    ctx.rect(this.x, this.y, this.width, this.height); // Fix: Use `this.y`
+    ctx.rect(this.x, this.y, this.width, this.height);
     ctx.fillStyle = this.color;
     ctx.fill();
     ctx.closePath();
