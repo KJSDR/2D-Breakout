@@ -4,9 +4,9 @@ import Sprite from './sprite';
 import { canvas } from './constants';
 
 class Ball extends Sprite {
-  private radius: number;
-  private dx: number;
-  private dy: number;
+  radius: number;
+  dx: number;
+  dy: number;
 
   constructor(x: number, y: number, radius: number = 10, color: string = '#0095DD') {
     super(x, y, 0, 0, color);

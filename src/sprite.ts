@@ -1,9 +1,9 @@
 class Sprite {
-  protected x: number;
-  protected y: number;
-  protected width: number;
-  protected height: number;
-  protected color: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  color: string;
 
   constructor(x: number, y: number, width: number, height: number, color: string = '#f0000') {
     this.x = x;
